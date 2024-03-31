@@ -1,0 +1,41 @@
+.row{
+    padding: 2px;
+}
+p{
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    text-align: center;
+}
+.img-fluid{
+margin: 1rem;
+border-radius: 3%;
+box-shadow: 22px 0px 99px;
+background-color: rgb(110, 108, 108);
+}
+
+
+
+/* Para dispositivos móviles */
+@media (max-width: 767px) {
+    #foto_perfil {
+      width: 100%; /* Ajusta la imagen al ancho del contenedor */
+      height: auto; /* Mantiene la proporción de la imagen */
+    }
+  }
+  
+  /* Para tabletas */
+  @media (min-width: 768px) and (max-width: 991px) {
+    #foto_perfil {
+      width: 100%; /* Ajusta la imagen a la mitad del ancho del contenedor */
+      height: auto; /* Mantiene la proporción de la imagen */
+    }
+  }
+  
+  /* Para dispositivos de escritorio */
+  @media (min-width: 992px) {
+    #foto_perfil {
+      width: 90%; /* Ajusta la imagen a un cuarto del ancho del contenedor */
+      height: auto; /* Mantiene la proporción de la imagen */
+    }
+  }
+  

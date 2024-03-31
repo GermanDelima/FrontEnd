@@ -1,3 +1,45 @@
-#logoAP{
-    width: 10rem;
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
 }
+
+.redes {
+    margin-right: 1rem; /* Ajusta el margen para dispositivos móviles */
+}
+
+.btn {
+    border-width: medium;
+    font-size: 1rem; /* Reduce el tamaño del texto del botón */
+    padding: 0.5rem 1rem; /* Ajusta el espaciado interno del botón */
+}
+
+#logoAP {
+    width: 8rem; /* Reduce el tamaño del logo para dispositivos móviles */
+}
+
+img {
+    width: 2rem; /* Reduce el tamaño de los íconos de redes sociales */
+    margin-right: 0.5rem;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../../../assets/hero-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #2F3F54; /* Color de fondo si la imagen no se carga */
+}
+
+@media (max-width: 768px) {
+    #banner {
+        height: 100vh; /* Altura del banner en dispositivos móviles */
+    }
+}
+
+
+  
