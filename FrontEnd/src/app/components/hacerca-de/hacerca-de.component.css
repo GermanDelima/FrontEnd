@@ -13,7 +13,10 @@ box-shadow: 22px 0px 99px;
 background-color: rgb(110, 108, 108);
 }
 
-
+#vvv{
+font-size: 2rem;
+color: rgb(0, 0, 0);
+}
 
 /* Para dispositivos móviles */
 @media (max-width: 767px) {
