@@ -1,6 +1,22 @@
 .row{
-    padding: 1rem;
+    margin: 0rem;
+    padding: 0rem;
+    padding-top: 4rem;
+    background-color: #F2F4F4;
 }
-div{
-    background-color: #ffffff;
+
+/* Para textos */
+p{
+    font-size: 1.5rem;
+    color: #2C4249;
 }
+
+
+
+h2{
+    color: red;
+}
+
+
+
+

@@ -1,21 +1,24 @@
 .row{
-    padding: 2px;
+  margin: 0rem;
+  padding: 1rem;  
+   background-color: #A2ACAF;
 }
+/* Para textos */
+h2{
+  font-size: 2rem;
+  color: #2C4249;
+  }
 p{
-    color: rgb(0, 0, 0);
+    color: #2C4249;
     font-size: 1.5rem;
     text-align: center;
 }
+/* Para foto perfil */
 .img-fluid{
-margin: 1rem;
-border-radius: 3%;
-box-shadow: 22px 0px 99px;
-background-color: rgb(110, 108, 108);
-}
+margin: 0rem;
+border-radius: 1%;
+box-shadow: 2px 0px 70px;
 
-#vvv{
-font-size: 2rem;
-color: rgb(0, 0, 0);
 }
 
 /* Para dispositivos móviles */
@@ -41,4 +44,4 @@ color: rgb(0, 0, 0);
       height: auto; /* Mantiene la proporción de la imagen */
     }
   }
-  
+ 

@@ -1,0 +1,25 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #3cdb06;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #2C4249, rgba(37, 117, 252, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #2C4249, #2C4249)
+    }
+
+    .row{
+        padding: 0rem;
+        
+    }
+    
+    footer{
+        display: flex;
+        flex-direction: column;
+        background-color: #2C4249;
+        font-size: 16px;
+        color: #fefefe;
+        text-align: center;
+        box-shadow: 1px -2px 5px #999 ;
+    }
