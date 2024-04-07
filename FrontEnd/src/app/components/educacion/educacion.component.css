@@ -1,22 +1,32 @@
-.row{
-    margin: 0rem;
-    padding: 0rem;
+/* CSS con las correcciones aplicadas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 4rem;
     padding-top: 4rem;
     background-color: #F2F4F4;
-}
-
-/* Para textos */
-p{
+  }
+  
+  .list-group-item {
+    margin-bottom: 1rem; /* Espacio entre filas */
+    padding: 2rem;
+  }
+  
+  /* Estilos para textos y títulos */
+  p {
     font-size: 1.5rem;
     color: #2C4249;
-}
-
-
-
-h2{
-    color: red;
-}
-
-
-
-
+  }
+  
+  h2 {
+    color: #2C4249;
+  }
+  
+  /* Media query para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .list-group-item {
+      /* Cambia a 'col-lg-12' para que cada elemento ocupe el 100% del espacio disponible en pantallas pequeñas */
+      flex: 0 0 100%;
+    }
+  }
+  

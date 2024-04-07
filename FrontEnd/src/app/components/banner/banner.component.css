@@ -1,5 +1,12 @@
-
-img{
+/* CSS para pantallas grandes */
+img {
     width: 100%;
-    height: 50rem;
+    height: 30rem;
+}
+
+/* CSS para pantallas de celulares */
+@media (max-width: 600px) {
+    #banner {
+        display: none;
+    }
 }
