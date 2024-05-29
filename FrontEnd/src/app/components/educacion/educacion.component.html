@@ -1,66 +1,148 @@
-<!-- HTML con las correcciones aplicadas -->
-<div class="row">
-  <div>
-    <div class="text-center">
-      <button type="button" class="btn btn-success" (click)="onOpenModal('add')">
-        <span style="color: aliceblue">añadir educación<span class="sr-only"> (current)</span></span>
-      </button>
-    </div>
+<div class="row ">
+
+ 
+
+  <!-- Botón para abrir el modal de agregar educación -->
+  <div class="text-center my-1">
+    <button type="button" class="btn btn-success" (click)="onOpenModal('add')" data-bs-toggle="modal" data-bs-target="#addEducationModal">
+      <span style="color: aliceblue">Añadir educación</span><span class="sr-only"></span>
+    </button>
+    <h3>Educacion</h3>
   </div>
 
-  <!-- Contenedor para los elementos de educación con la clase 'col-lg-4' aplicada -->
-  <div class="col-lg-4 list-group-item" *ngFor="let education of educations">
-    <h2>Educación</h2>
-    <div class="col text-center">
-      <!--f-->
-      <a (click)="onOpenModal('edit',education)" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" title="Edit">
-        <i class="fa fa-pencil"></i>
-      </a>
-      <!--f-->
-      <a (click)="onOpenModal('delete',education)" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" title="Delete">
-        <i class="fa fa-times"></i>
-      </a>
+  <!-- Iteración sobre las educaciones para mostrarlas -->
+  <div class="col-lg-4" *ngFor="let education of educations">
+    <div class="card-body">
+      
+      
+      <div class="card mb-4 efecto">
+        <div class="row ">
+          <div class="col-md-4">
+            <img [src]="education.logoEduc" class="img-fluid rounded-start" alt="Imagen educativa" style="height: 100%;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{education.titEdu}}</h5>
+              <p class="card-text"><small class="text-muted">{{education.instituto}}</small></p>
+              <p class="card-text">{{education.descEduc}}</p>
+              <p class="card-text"><small class="text-muted">Período: {{education.fechaInic}} - {{education.fechaFin}}</small></p>
+              <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-outline-primary btn-sm me-2" (click)="onEditEducation(education)" data-bs-toggle="modal" [attr.data-bs-target]="'#editEducationModal-' + education.id">Editar</button>
+                <button type="button" class="btn btn-outline-danger btn-sm" (click)="onDeleteEducation(education.id)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer efecto ">
+          <img [src]="education.logoCertificado" class="img-fluid" alt="Imagen del certificado" style="width: 100%; max-height: 250px;">
+        </div>
+      </div>
+      
     </div>
-    <div class="col-lg-12" id="Center"><img [src]="education.imgEdu" width="300rem"></div>
-    <div class="col-lg-12" id="Center"> <p><strong>Título:</strong> {{education.tituloEdu}}</p></div>
-    <div class="col-lg-12" id="Center"><p><strong>Período:</strong> {{education.fechaEdu}}</p></div>
-    <div class="col-lg-6"><p><strong>Descripción:</strong> {{education.descEdu}}.</p></div>
-  </div>
 
-  <!-- Modal añadir educacion -->
-  <div class="modal fade" id="addEducationModal" tabindex="-1" role="dialog" aria-labelledby="addEducationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addEducationModalLabel">Añadir educación</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form #addForm="ngForm" (ngSubmit)="onAddEducation(addForm)">
-            <div class="mb-3">
-              <label for="tituloEdu" class="form-label">Título</label>
-              <input type="text" ngModel name="tituloEdu" class="form-control" id="tituloEdu" placeholder="Título" required>
-            </div>
-            <div class="mb-3">
-              <label for="fechaEdu" class="form-label">Fecha</label>
-              <input type="text" ngModel name="fechaEdu" class="form-control" id="fechaEdu" placeholder="Fecha" required>
-            </div>
-            <div class="mb-3">
-              <label for="descEdu" class="form-label">Descripción</label>
-              <input type="text" ngModel name="descEdu" class="form-control" id="descEdu" placeholder="Descripción" required>
-            </div>
-            <div class="mb-3">
-              <label for="imgEdu" class="form-label">Imagen</label>
-              <input type="text" ngModel name="imgEdu" class="form-control" id="imgEdu" placeholder="Imagen" required>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Añadir cambios</button>
-            </div>
-          </form>
-        </div>
+    <!-- Modal para editar la educación -->
+    <div class="modal fade" [id]="'editEducationModal-' + education.id" tabindex="-1" role="dialog" [attr.aria-labelledby]="'editEducationModalLabel-' + education.id" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" [id]="'editEducationModalLabel-' + education.id">Editar Educación</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">
+                      
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <!-- Formulario para editar la educación -->
+                  <form (ngSubmit)="onUpdateEducation(editForm)" #editForm="ngForm">
+                      <div class="form-group mb-3">
+                          <label for="editLogoEduc">URL de la imagen</label>
+                          <input type="text" class="form-control" id="editLogoEduc" required [(ngModel)]="editEducation.logoEduc" name="editLogoEduc">
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="editLogoCertificado">URL del certificado</label>
+                          <input type="text" class="form-control" id="editLogoCertificado" required [(ngModel)]="editEducation.logoCertificado" name="editLogoCertificado">
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="editTitEdu">Título</label>
+                          <input autocomplete="off" type="text" class="form-control" id="editTitEdu" required [(ngModel)]="editEducation.titEdu" name="editTitEdu">
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="editFechaInic">Fecha de inicio</label>
+                          <input autocomplete="off" type="text" class="form-control" id="editFechaInic" required [(ngModel)]="editEducation.fechaInic" name="editFechaInic">
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="editFechaFin">Fecha de fin</label>
+                          <input autocomplete="off" type="text" class="form-control" id="editFechaFin" required [(ngModel)]="editEducation.fechaFin" name="editFechaFin">
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="editdescEduc">Descripción</label>
+                          <textarea autocomplete="off" class="form-control" id="editdescEduc" rows="3" required [(ngModel)]="editEducation.descEduc" name="editdescEduc"></textarea>
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="editInstituto">Instituto</label>
+                          <input type="text" class="form-control" id="editInstituto" required [(ngModel)]="editEducation.instituto" name="editInstituto">
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                         
+                          <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Guardar cambios</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+ 
+ <!-- Modal para agregar una nueva educación -->
+<div class="modal fade" id="addEducationModal" tabindex="-1" role="dialog" aria-labelledby="addEducationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEducationModalLabel">Añadir educación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Formulario para agregar una nueva educación -->
+        <form (ngSubmit)="onAddEducation(addForm)" #addForm="ngForm">
+          <div class="mb-3">
+            <label for="logoEduc" class="form-label">URL de la imagen</label>
+            <input type="text" class="form-control" id="logoEduc" required [(ngModel)]="newEducation.logoEduc" name="logoEduc">
+          </div>
+          <div class="mb-3">
+            <label for="titEdu" class="form-label">Título</label>
+            <input autocomplete="off" type="text" class="form-control" id="titEdu" required [(ngModel)]="newEducation.titEdu" name="titEdu">
+          </div>
+          <div class="mb-3">
+            <label for="fechaInic" class="form-label">Fecha de inicio</label>
+            <input autocomplete="off" type="text" class="form-control" id="fechaInic" required [(ngModel)]="newEducation.fechaInic" name="fechaInic">
+          </div>
+          <div class="mb-3">
+            <label for="fechaFin" class="form-label">Fecha de fin</label>
+            <input autocomplete="off" type="text" class="form-control" id="fechaFin" required [(ngModel)]="newEducation.fechaFin" name="fechaFin">
+          </div>
+          <div class="mb-3">
+            <label for="descEduc" class="form-label">Descripción</label>
+            <textarea autocomplete="off" class="form-control" id="descEduc" rows="3" required [(ngModel)]="newEducation.descEduc" name="descEduc"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="logoCertificado" class="form-label">URL del certificado</label>
+            <input type="text" class="form-control" id="logoCertificado" required [(ngModel)]="newEducation.logoCertificado" name="logoCertificado">
+          </div>
+          <div class="mb-3">
+            <label for="instituto" class="form-label">Instituto</label>
+            <input type="text" class="form-control" id="instituto" required [(ngModel)]="newEducation.instituto" name="instituto">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success" [disabled]="!addForm.form.valid" data-bs-dismiss="modal">Añadir</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
+
+</div>
 </div>

@@ -1,7 +1,10 @@
 export interface Education{
     id: number;
-    tituloEdu: String;
-    fechaEdu: number;
-    descEdu: String;
-    imgEdu: String;
+    titEdu: String;
+    fechaInic: number;
+    fechaFin: number;
+    descEduc: String;
+    logoEduc: String;
+    logoCertificado: String;
+    instituto: String
 }

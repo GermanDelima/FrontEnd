@@ -4,11 +4,11 @@
 
 <div *ngIf="usuario" class="row">
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 ">
-        <img id="foto_perfil" src="{{usuario.img}}" class="img-fluid" >
+        <img id="foto_perfil" [src]="usuario.img" class="img-fluid" >
     </div>
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" id="blue">
         <p>{{usuario.nombre}} {{usuario.apellido}}</p>
-        <p>{{usuario.titulo}}</p>
+        <p>{{usuario.profesion}}</p>
     </div>
     <div class="col-xs-12 col-sm-2 col-md-5 col-lg-6" id="red">
         <h2 class="text-center" id="vvv">Hacerca de</h2>
