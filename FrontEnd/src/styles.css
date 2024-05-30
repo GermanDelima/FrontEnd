@@ -3,6 +3,9 @@
 /**/
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+.container{
+  background-color: #F2F4F4;
+}
 /**.modal-backdrop {
     display: none !important; /* Oculta la sombra negra transparente */
   /*}

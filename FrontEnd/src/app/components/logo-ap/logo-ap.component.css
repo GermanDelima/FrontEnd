@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: -2rem;
+    background-color: #2F3F54;
 }
 
 .redes {
@@ -17,11 +18,13 @@
 
 #logoAP {
     width: 8rem; /* Reduce el tamaño del logo para dispositivos móviles */
+    margin-left: 1rem;
 }
 
 img {
     width: 2rem; /* Reduce el tamaño de los íconos de redes sociales */
     margin-right: 0.5rem;
+
 }
 
 

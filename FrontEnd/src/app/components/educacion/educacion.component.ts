@@ -61,6 +61,8 @@ export class EducacionComponent implements OnInit {
       error: (error: HttpErrorResponse) => {
         alert(error.message);
       }
+
+      
     });
   }
   

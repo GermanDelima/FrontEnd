@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { HacercaDeComponent } from './components/hacerca-de/hacerca-de.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Importa NgbModule
+import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Importa NgbModule
     BannerComponent,
     EducacionComponent, 
     ProyectoComponent,
+    ExperienciaComponent,
     FooterComponent,
     HomeComponent,
     LoginComponent,

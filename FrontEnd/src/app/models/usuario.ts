@@ -4,5 +4,5 @@ export interface Usuario{
     apellido: String;
     profesion: String;
     img: String;
-    descripcion: String;
+    descSobremi: String;
 }
