@@ -1,0 +1,66 @@
+<!-- Mensaje de error -->
+<p *ngIf="errorMessage.length > 0" class="text-danger">{{ errorMessage }}</p>
+
+<!-- Carrusel de diplomas -->
+<section id="diplomaCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <article class="carousel-item" *ngFor="let diploma of diplomas; let i = index" [class.active]="i === 0">
+      <div class="row">
+        <div class="col-lg-6 col-12">
+          <figure class="card card-personalizado">
+            <img [src]="diploma.logo" class="card-img-top" alt="Logo del Diploma">
+          </figure>
+        </div>
+      </div>
+    </article>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#diplomaCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#diplomaCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</section>
+
+<!-- Botones de acción -->
+<div class="card-body">
+  <button *ngIf="diplomaLoginOn && !editMode" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModalAgregarDiploma">
+    Agregar diploma
+  </button>
+
+  <button *ngIf="diplomaLoginOn && !editMode && diploma" class="btn btn-danger" (click)="deleteDiploma(diploma.id)">
+    <i class="bi bi-trash3"></i>
+  </button>
+</div>
+
+<!-- Modal para agregar diploma -->
+<div class="modal fade" id="addModalAgregarDiploma" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Agregar Diploma</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <form [formGroup]="addDiplomaForm">
+          <!-- Campos del formulario para agregar el diploma -->
+          <div class="form-group">
+            <label for="logo">Diploma</label>
+            <input type="text" formControlName="logo" class="form-control" id="logo">
+            <div *ngIf="addDiplomaForm.get('logo')?.invalid && (addDiplomaForm.get('logo')?.dirty || addDiplomaForm.get('logo')?.touched)" class="text-danger">
+              <div *ngIf="addDiplomaForm.get('logo')?.errors?.['required']">
+                El Diploma es requerido.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" (click)="addDiploma()" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+      </footer>
+    </div>
+  </div>
+</div>

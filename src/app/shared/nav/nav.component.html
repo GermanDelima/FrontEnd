@@ -1,0 +1,61 @@
+<section>
+  <nav class="navbar navbar-expand-md bg-bluess">
+    <div class="container-fluid d-flex">
+      <img src="/assets/favicon-32x32.png" alt="Logo del portfolio">
+      <div class="d-flex collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <div class="d-flex justify-content-end">
+            <li class="nav-item" (mouseenter)="showTooltip($event, 'Inicio')" (mouseleave)="hideTooltip()">
+              <a class="nav-link active text-white hover-effect" href="/inicio">
+                <i class="fas fa-home" alt="logo inicio"></i>
+              </a>
+              <div class="tooltip" *ngIf="tooltipVisible">{{ tooltipText }}</div>
+            </li>
+
+            <li class="nav-item" (mouseenter)="showTooltip($event, 'Habilidad')" (mouseleave)="hideTooltip()">
+              <a class="nav-link text-white hover-effect" routerLink="/inicio" fragment="habilidad-section">
+                <i class="fas fa-star" alt="logo de Habilidad"></i>
+              </a>
+              <div class="tooltip" *ngIf="tooltipVisible">{{ tooltipText }}</div>
+            </li>
+
+            <li class="nav-item" (mouseenter)="showTooltip($event, 'Proyecto')" (mouseleave)="hideTooltip()">
+              <a class="nav-link text-white hover-effect" routerLink="/inicio" fragment="proyecto-section">
+                <i class="fas fa-clipboard" alt="logo de Proyecto"></i>
+              </a>
+              <div class="tooltip" *ngIf="tooltipVisible">{{ tooltipText }}</div>
+            </li>
+
+            <li class="nav-item" (mouseenter)="showTooltip($event, 'Educacion')" (mouseleave)="hideTooltip()">
+              <a class="nav-link active text-white hover-effect" routerLink="/inicio" fragment="education-section">
+                <i class="fas fa-graduation-cap" alt="logo de Educacion"></i>
+              </a>
+              <div class="tooltip" *ngIf="tooltipVisible">{{ tooltipText }}</div>
+            </li>
+
+            <li class="nav-item" (mouseenter)="showTooltip($event, 'Diploma')" (mouseleave)="hideTooltip()">
+              <a class="nav-link text-white hover-effect" routerLink="/inicio" fragment="diploma-section">
+                <i class="fa-solid fa-certificate" alt="logo del Diploma"></i>
+              </a>
+              <div class="tooltip" *ngIf="tooltipVisible">{{ tooltipText }}</div>
+            </li>
+
+            <li *ngIf="userLoginOn" class="nav-item" (mouseenter)="showTooltip($event, 'Cerrar sesión')" (mouseleave)="hideTooltip()">
+              <a class="nav-link text-white hover-effect" (click)="logout()" routerLink="/inicio">
+                <i class="fas fa-sign-out-alt" alt="logo de Cerrar sesión"></i>
+              </a>
+              <div class="tooltip" *ngIf="tooltipVisible">{{ tooltipText }}</div>
+            </li>
+
+            <li *ngIf="!userLoginOn" class="nav-item" (mouseenter)="showTooltip($event, 'Iniciar sesión')" (mouseleave)="hideTooltip()">
+              <a class="nav-link text-white hover-effect" routerLink="/iniciar-sesion">
+                <i class="fas fa-sign-in-alt" alt="logo de iniciar sesion"></i>
+              </a>
+              <div class="tooltip" *ngIf="tooltipVisible">{{ tooltipText }}</div>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>

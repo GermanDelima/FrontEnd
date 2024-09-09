@@ -1,0 +1,36 @@
+
+.card-title {
+    font-size: 1.813rem;
+    font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.card-text{
+  font-size: 1.063rem;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.card-personalizado{
+    
+    background-color: #D7D7D7;
+    margin-top: 0rem;
+    
+}
+
+
+
+.card-personalizado:hover{
+    
+    background-color: #f0e9e9;
+    cursor: pointer;
+}
+
+.boton{
+    display: flex;
+    justify-content: flex-end;
+  }

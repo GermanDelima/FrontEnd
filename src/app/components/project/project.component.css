@@ -1,0 +1,75 @@
+.row{
+  padding: 0%;
+  margin: 0%;
+  
+}
+
+/* Estilo para los enlaces de evidencia */
+.evidence-link {
+    text-decoration: none; 
+    color: #00b32a; 
+    font-weight: bold; 
+  }
+  
+  .evidence-link:hover {
+    color: #00b342; /* Cambia el color del texto al pasar el ratón por encima */
+  }
+
+
+  .card-personalizado{
+    padding: 0rem;
+    background-color: #1F2937;
+    margin-top: 0rem;
+    border: solid #353e4b 1px;
+    
+}
+
+.card-personalizado:hover{
+    
+    background-color: #00b32a47;
+    
+}
+  
+.row{
+justify-content: center;
+}
+
+
+.card-title{
+  font-size: 1.813rem;
+  color: #E4E6EB;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+
+.card-text{
+  color: #E4E6EB;
+  font-size: 1.063rem;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+img{
+  width: 25%;
+  border-radius: 100%;
+  margin-top: auto;
+}
+
+.endd{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+align-items: center;
+}
+
+.boton{
+  display: flex;
+  justify-content: flex-end;
+}
+

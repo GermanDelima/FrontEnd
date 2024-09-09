@@ -1,0 +1,118 @@
+<!-- Lista de habilidades -->
+<section class="row">
+  <article class="col-12 col-md-3 col-lg-1 text-center ability-container" *ngFor="let ability of abilitys">
+    <figure class="img">
+      <img [src]="ability.imageUrl" class="img-fluid" alt="Logo de habilidad" [ngbTooltip]="ability.nombre" placement="bottom" (click)="toggleTooltip()">
+    </figure>
+    <div class="ability-buttons">
+      
+      <button *ngIf="abilityLoginOn" class="btn btn-sm btn-primary ability-button" data-bs-toggle="modal"
+        data-bs-target="#editModalEditarAbility" (click)="editAbility(ability)"> <i class="bi bi-pencil-fill"></i></button>
+      
+        <button *ngIf="abilityLoginOn" class="btn btn-sm btn-danger ability-button"
+        (click)="ability && deleteAbility(ability.id)"> <i class="bi bi-trash3"></i></button>
+    </div>
+  </article>
+</section>
+
+<!-- Botón para agregar habilidad -->
+<div>
+  <button *ngIf="abilityLoginOn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModalAgregarAbility">Agregar habilidad</button>
+</div>
+
+<!-- Modal add -->
+<div class="modal fade" id="addModalAgregarAbility" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Agregar Habilidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <form [formGroup]="addAbilityForm">
+          <!-- Campos del formulario para agregar la habilidad -->
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre">
+            <div *ngIf="addAbilityForm.get('nombre')?.invalid && (addAbilityForm.get('nombre')?.dirty || addAbilityForm.get('nombre')?.touched)" class="text-danger">
+              <div *ngIf="addAbilityForm.get('nombre')?.errors?.['required']">
+                El Nombre es requerido.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="imageUrl">URL de la Imagen</label>
+            <input type="text" formControlName="imageUrl" class="form-control" id="imageUrl">
+            <div *ngIf="addAbilityForm.get('imageUrl')?.invalid && (addAbilityForm.get('imageUrl')?.dirty || addAbilityForm.get('imageUrl')?.touched)" class="text-danger">
+              <div *ngIf="addAbilityForm.get('imageUrl')?.errors?.['required']">
+                La URL de la Imagen es requerida.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" (click)="addAbility()" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- Modal edit -->
+<div class="modal fade" id="editModalEditarAbility" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Editar Habilidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <form [formGroup]="editAbilityForm">
+          <!-- Campos del formulario para editar la habilidad -->
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre">
+            <div *ngIf="editAbilityForm.get('nombre')?.invalid && (editAbilityForm.get('nombre')?.dirty || editAbilityForm.get('nombre')?.touched)" class="text-danger">
+              <div *ngIf="editAbilityForm.get('nombre')?.errors?.['required']">
+                El Nombre es requerido.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="imageUrl">URL de la Imagen</label>
+            <input type="text" formControlName="imageUrl" class="form-control" id="imageUrl">
+            <div *ngIf="editAbilityForm.get('imageUrl')?.invalid && (editAbilityForm.get('imageUrl')?.dirty || editAbilityForm.get('imageUrl')?.touched)" class="text-danger">
+              <div *ngIf="editAbilityForm.get('imageUrl')?.errors?.['required']">
+                La URL de la Imagen es requerida.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" (click)="saveAbilityData()" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para confirmar la eliminación de una habilidad -->
+<div class="modal fade" id="deleteModalEliminarAbility" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Eliminar Habilidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <p>¿Estás seguro de que deseas eliminar la habilidad "{{ ability?.nombre }}"?</p>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="ability && deleteAbility(ability.id)" data-bs-dismiss="modal">Eliminar</button>
+      </footer>
+    </div>
+  </div>
+</div>

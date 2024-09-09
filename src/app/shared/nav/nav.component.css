@@ -1,0 +1,87 @@
+.bg-bluess{
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: #111827;  
+  border-bottom: 1px solid #353E4B;
+}
+
+.hover-effect {
+    padding: 0.5rem;
+    border-radius: 0px;
+    transition: background 0.3s ease;
+  }
+
+  .hover-effect:hover {
+    background: linear-gradient(to right, #057EA3, #87CEEB); /* Degradado de azul claro a azul cielo */
+  
+  }
+
+
+  .cenn{
+    display: flex;
+   justify-content: center;
+ 
+  }
+
+/* Tooltip css*/
+.nav-item {
+  position: relative;
+ ;
+}
+
+.fas, .fa-solid{
+  font-size: 1.5rem;
+}
+
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: #e6e8ea;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 1000;
+  transition: opacity 0.3s;
+}
+
+.nav-item:hover .tooltip {
+  display: block;
+  opacity: 1;
+}
+
+.nav-link {
+  position: relative;
+  cursor: pointer;
+}
+
+.hover-effect {
+  position: relative;
+}
+
+.hover-effect::after {
+  content: attr(data-tooltip);
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, 0);
+  background: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.hover-effect:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+

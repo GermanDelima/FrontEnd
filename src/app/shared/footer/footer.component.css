@@ -1,0 +1,41 @@
+@media (max-width: 767px) {
+  #footer .copyright-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #footer .social-links {
+    margin-top: 10px;
+    gap: 5rem;
+  }
+}
+
+#footer:hover {
+  
+}
+
+.icon-size {
+  font-size: 3rem;
+
+
+}
+
+.copyright-wrap {
+  color: #E4E6EB;
+  
+}
+
+.social-links a {
+  color: white;
+  
+}
+
+.social-links a:hover {
+  color: green;
+
+}
+
+
+a {
+  padding-left: 0.5rem;
+}

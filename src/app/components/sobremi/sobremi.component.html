@@ -1,0 +1,136 @@
+<section>
+  <p *ngIf="errorMessage.length > 0" class="text-danger">
+    {{ errorMessage }}
+  </p>
+
+  <div class="sobremii">
+    <!-- Botón para abrir el modal de edición -->
+    <button
+      *ngIf="sobremiLoginOn && !editMode"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#editModal"
+      aria-label="Editar Datos"
+    >
+      <i class="bi bi-pencil-fill"></i>
+    </button>
+
+    <!-- Imagen de perfil -->
+    <figure class="col-12 col-md-4 col-lg-4 ContainerFoto">
+      <img
+        id="foto_perfil"
+        [src]="sobremi?.fotoDelPerfil"
+        class="img-fluid profile-picture"
+        alt="Foto de perfil"
+      >
+    </figure>
+
+    <!-- Modal de edición -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+      (hidden.bs.modal)="cancelEdit()"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <header class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Editar Datos</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </header>
+
+          <div class="modal-body">
+            <form [formGroup]="registerForm">
+              <!-- Campo para foto del perfil -->
+              <div class="form-group">
+                <label for="fotoDelPerfil">Foto del Perfil</label>
+                <input
+                  type="text"
+                  formControlName="fotoDelPerfil"
+                  class="form-control"
+                  id="fotoDelPerfil"
+                >
+                <div
+                  *ngIf="registerForm.get('fotoDelPerfil')?.invalid && 
+                           (registerForm.get('fotoDelPerfil')?.dirty || 
+                           registerForm.get('fotoDelPerfil')?.touched)"
+                  class="text-danger"
+                >
+                  <div *ngIf="registerForm.get('fotoDelPerfil')?.errors?.['required']">
+                    La foto del perfil es requerida.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Campo para foto de portada -->
+              <div class="form-group">
+                <label for="fotoDePortada">Foto de Portada</label>
+                <input
+                  type="text"
+                  formControlName="fotoDePortada"
+                  class="form-control"
+                  id="fotoDePortada"
+                >
+                <div
+                  *ngIf="registerForm.get('fotoDePortada')?.invalid && 
+                           (registerForm.get('fotoDePortada')?.dirty || 
+                           registerForm.get('fotoDePortada')?.touched)"
+                  class="text-danger"
+                >
+                  <div *ngIf="registerForm.get('fotoDePortada')?.errors?.['required']">
+                    La foto de portada es requerida.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Campo para presentación -->
+              <div class="form-group">
+                <label for="presentacion">Presentación</label>
+                <textarea
+                  formControlName="presentacion"
+                  class="form-control"
+                  id="presentacion"
+                ></textarea>
+                <div
+                  *ngIf="registerForm.get('presentacion')?.invalid && 
+                           (registerForm.get('presentacion')?.dirty || 
+                           registerForm.get('presentacion')?.touched)"
+                  class="text-danger"
+                >
+                  <div *ngIf="registerForm.get('presentacion')?.errors?.['required']">
+                    La presentación es requerida.
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <footer class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              (click)="saveSobreMiDetailsData()"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Guardar
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

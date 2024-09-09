@@ -1,0 +1,195 @@
+<!-- Mensaje de error -->
+<p *ngIf="errorMessage.length > 0" class="text-danger">{{ errorMessage }}</p>
+
+<!-- Lista de educaciones -->
+<section class="row">
+  <article class="col-12 col-lg-4" *ngFor="let education of educations">
+    <div class="boton">
+      <button *ngIf="educationLoginOn && !editMode" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModalEditarEducation" (click)="editEducation(education)">
+        <i class="bi bi-pencil-fill"></i>
+      </button>
+      <button *ngIf="educationLoginOn && !editMode" class="btn btn-danger" (click)="deleteEducation(education.id)">
+        <i class="bi bi-trash3"></i>
+      </button>
+    </div>
+
+    <div class="card card-personalizado">
+      <figure class="card-personalizado">
+        <img [src]="education.logoCertificado" class="img-fluid" alt="Logo del Certificado">
+      </figure>
+
+      <div class="card-body">
+        <h3 class="card-title">{{ education?.titEdu }}</h3>
+        <p class="card-text text-muted">{{ education?.instituto }}</p>
+        <p class="card-text text-muted"><strong>Fecha de Inicio:</strong> {{ education?.fechaInic }}</p>
+        <p class="card-text text-muted"><strong>Fecha de Finalización:</strong> {{ education?.fechaFin }}</p>
+        <p class="card-text text-muted"><strong>Objetivo del curso:</strong> {{ education?.descEduc }}</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Botón para agregar educación -->
+<button *ngIf="educationLoginOn && !editMode" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModalAgregarEducation">
+  Agregar educación
+</button>
+
+<!-- Modal para agregar educación -->
+<div class="modal fade" id="addModalAgregarEducation" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Agregar Educación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <form [formGroup]="addEducationForm">
+          <!-- Campos del formulario para agregar la educación -->
+          <div class="form-group">
+            <label for="instituto">Instituto</label>
+            <input type="text" formControlName="instituto" class="form-control" id="instituto">
+            <div *ngIf="addEducationForm.get('instituto')?.invalid && (addEducationForm.get('instituto')?.dirty || addEducationForm.get('instituto')?.touched)" class="text-danger">
+              <div *ngIf="addEducationForm.get('instituto')?.errors?.['required']">
+                El Instituto es requerido.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="titEdu">Título de Educación</label>
+            <input type="text" formControlName="titEdu" class="form-control" id="titEdu">
+            <div *ngIf="addEducationForm.get('titEdu')?.invalid && (addEducationForm.get('titEdu')?.dirty || addEducationForm.get('titEdu')?.touched)" class="text-danger">
+              <div *ngIf="addEducationForm.get('titEdu')?.errors?.['required']">
+                El Título de Educación es requerido.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaInic">Fecha de Inicio</label>
+            <input type="text" formControlName="fechaInic" class="form-control" id="fechaInic">
+            <div *ngIf="addEducationForm.get('fechaInic')?.invalid && (addEducationForm.get('fechaInic')?.dirty || addEducationForm.get('fechaInic')?.touched)" class="text-danger">
+              <div *ngIf="addEducationForm.get('fechaInic')?.errors?.['required']">
+                La Fecha de Inicio es requerida.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaFin">Fecha de Finalización</label>
+            <input type="text" formControlName="fechaFin" class="form-control" id="fechaFin">
+            <div *ngIf="addEducationForm.get('fechaFin')?.invalid && (addEducationForm.get('fechaFin')?.dirty || addEducationForm.get('fechaFin')?.touched)" class="text-danger">
+              <div *ngIf="addEducationForm.get('fechaFin')?.errors?.['required']">
+                La Fecha de Finalización es requerida.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descEduc">Descripción de la Educación</label>
+            <textarea formControlName="descEduc" class="form-control" id="descEduc"></textarea>
+            <div *ngIf="addEducationForm.get('descEduc')?.invalid && (addEducationForm.get('descEduc')?.dirty || addEducationForm.get('descEduc')?.touched)" class="text-danger">
+              <div *ngIf="addEducationForm.get('descEduc')?.errors?.['required']">
+                La Descripción de la Educación es requerida.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="logoCertificado">Logo del Certificado</label>
+            <input type="text" formControlName="logoCertificado" class="form-control" id="logoCertificado">
+            <div *ngIf="addEducationForm.get('logoCertificado')?.invalid && (addEducationForm.get('logoCertificado')?.dirty || addEducationForm.get('logoCertificado')?.touched)" class="text-danger">
+              <div *ngIf="addEducationForm.get('logoCertificado')?.errors?.['required']">
+                El Logo del Certificado es requerido.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" (click)="addEducation()" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para editar educación -->
+<div class="modal fade" id="editModalEditarEducation" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Editar Educación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <form [formGroup]="editEducationForm">
+          <!-- Campos del formulario para editar la educación -->
+          <div class="form-group">
+            <label for="instituto">Instituto</label>
+            <input type="text" formControlName="instituto" class="form-control" id="instituto">
+            <div *ngIf="editEducationForm.get('instituto')?.invalid && (editEducationForm.get('instituto')?.dirty || editEducationForm.get('instituto')?.touched)" class="text-danger">
+              <div *ngIf="editEducationForm.get('instituto')?.errors?.['required']">
+                El Instituto es requerido.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="titEdu">Título de Educación</label>
+            <input type="text" formControlName="titEdu" class="form-control" id="titEdu">
+            <div *ngIf="editEducationForm.get('titEdu')?.invalid && (editEducationForm.get('titEdu')?.dirty || editEducationForm.get('titEdu')?.touched)" class="text-danger">
+              <div *ngIf="editEducationForm.get('titEdu')?.errors?.['required']">
+                El Título de Educación es requerido.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaInic">Fecha de Inicio</label>
+            <input type="text" formControlName="fechaInic" class="form-control" id="fechaInic">
+            <div *ngIf="editEducationForm.get('fechaInic')?.invalid && (editEducationForm.get('fechaInic')?.dirty || editEducationForm.get('fechaInic')?.touched)" class="text-danger">
+              <div *ngIf="editEducationForm.get('fechaInic')?.errors?.['required']">
+                La Fecha de Inicio es requerida.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaFin">Fecha de Finalización</label>
+            <input type="text" formControlName="fechaFin" class="form-control" id="fechaFin">
+            <div *ngIf="editEducationForm.get('fechaFin')?.invalid && (editEducationForm.get('fechaFin')?.dirty || editEducationForm.get('fechaFin')?.touched)" class="text-danger">
+              <div *ngIf="editEducationForm.get('fechaFin')?.errors?.['required']">
+                La Fecha de Finalización es requerida.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descEduc">Descripción de la Educación</label>
+            <textarea formControlName="descEduc" class="form-control" id="descEduc"></textarea>
+            <div *ngIf="editEducationForm.get('descEduc')?.invalid && (editEducationForm.get('descEduc')?.dirty || editEducationForm.get('descEduc')?.touched)" class="text-danger">
+              <div *ngIf="editEducationForm.get('descEduc')?.errors?.['required']">
+                La Descripción de la Educación es requerida.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="logoCertificado">Logo del Certificado</label>
+            <input type="text" formControlName="logoCertificado" class="form-control" id="logoCertificado">
+            <div *ngIf="editEducationForm.get('logoCertificado')?.invalid && (editEducationForm.get('logoCertificado')?.dirty || editEducationForm.get('logoCertificado')?.touched)" class="text-danger">
+              <div *ngIf="editEducationForm.get('logoCertificado')?.errors?.['required']">
+                El Logo del Certificado es requerido.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" (click)="saveSobreMiDetailsData()" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+      </footer>
+    </div>
+  </div>
+</div>

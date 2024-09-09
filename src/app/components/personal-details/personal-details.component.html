@@ -1,0 +1,72 @@
+<div class="col-12 col-md-8 col-lg-6 mb-0 mt-0 text-center bbb">
+  <section>
+    <h2 class="tamañoTextTitulo"><b>{{ user?.firstname }} {{ user?.lastname }}</b></h2>
+    <p class="tamañoTextSub"><b>{{ user?.profession }}</b></p>
+    <p class="tamañoTextPersDetails"><b>{{ sobremi?.presentacion }}</b></p>
+  </section>
+</div>
+
+<button *ngIf="userLoginOn" type="button" class="btn btn-primary" data-bs-toggle="modal"
+  data-bs-target="#editModalEditarDatosPersonales" aria-label="Editar datos personales">
+  <i class="bi bi-pencil-fill"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="editModalEditarDatosPersonales" tabindex="-1" aria-labelledby="editModalLabel"
+  aria-hidden="true" (hidden.bs.modal)="cancelEdit()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Editar Datos Personales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </header>
+      <div class="modal-body">
+        <p *ngIf="errorMessage.length != 0" class="text-danger">{{ errorMessage }}</p>
+        <form [formGroup]="personalDetailsForm">
+          <div class="form-group row">
+            <label for="inputFirstName" class="col-sm-3 col-form-label">Nombre</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="firstname" class="form-control" id="inputFirstName" aria-describedby="firstNameHelp">
+              <div *ngIf="personalDetailsForm.get('firstname')?.invalid && (personalDetailsForm.get('firstname')?.dirty || personalDetailsForm.get('firstname')?.touched)"
+                class="text-danger">
+                <div *ngIf="personalDetailsForm.get('firstname')?.errors?.['required']">
+                  El Nombre es requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputLastName" class="col-sm-3 col-form-label">Apellido</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="lastname" class="form-control" id="inputLastName" aria-describedby="lastNameHelp">
+              <div *ngIf="personalDetailsForm.get('lastname')?.invalid && (personalDetailsForm.get('lastname')?.dirty || personalDetailsForm.get('lastname')?.touched)"
+                class="text-danger">
+                <div *ngIf="personalDetailsForm.get('lastname')?.errors?.['required']">
+                  El apellido es requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputProfession" class="col-sm-3 col-form-label">Profesión</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="profession" class="form-control" id="inputProfession" aria-describedby="professionHelp">
+              <div *ngIf="personalDetailsForm.get('profession')?.invalid && (personalDetailsForm.get('profession')?.dirty || personalDetailsForm.get('profession')?.touched)"
+                class="text-danger">
+                <div *ngIf="personalDetailsForm.get('profession')?.errors?.['required']">
+                  La profesión es requerida.
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="savePersonalDetailsData()" data-bs-dismiss="modal">Guardar</button>
+      </footer>
+    </div>
+  </div>
+</div>

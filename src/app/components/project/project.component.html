@@ -1,0 +1,181 @@
+<div *ngIf="errorMessage.length > 0" class="text-danger">{{ errorMessage }}</div>
+
+<div class="row">
+  <div class="col-12 col-lg-4" *ngFor="let project of projects">
+    <article class="card card-personalizado">
+      <header class="boton">
+
+        <button *ngIf="educationLoginOn && !editMode" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModalEditarProject" (click)="editProject(project)">
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+
+        <button *ngIf="educationLoginOn && !editMode" class="btn btn-danger" (click)="deleteProject(project.id)">
+          <i class="bi bi-trash3"></i>
+        </button>
+        
+      </header>
+      <div class="card-body">
+        <figure class="endd">
+          <strong><h3 class="card-title">{{ project?.nombre }}</h3></strong>
+          <img [src]="project.img" class="card-img-top" alt="Imagen del Proyecto">
+        </figure>
+        <p class="card-text"><b>Inicio:</b> {{ project?.fechaInic }}</p>
+        <p class="card-text"><b>Finalización:</b> {{ project?.fechaFin }}</p>
+        <p class="card-text">{{ project?.descripcion }}</p>
+        <p class="card-text"><a [href]="project?.evidencia" target="_blank" class="evidence-link">Ver Evidencia</a></p>
+      </div>
+    </article>
+  </div>
+</div>
+
+<button *ngIf="educationLoginOn && !editMode" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModalAgregarProject">
+  Agregar proyecto
+</button>
+
+<!-- Modal add -->
+<div class="modal fade" id="addModalAgregarProject" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Agregar Proyecto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <form [formGroup]="addProjectForm">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre">
+            <div *ngIf="addProjectForm.get('nombre')?.invalid && (addProjectForm.get('nombre')?.dirty || addProjectForm.get('nombre')?.touched)" class="text-danger">
+              <div *ngIf="addProjectForm.get('nombre')?.errors?.['required']">
+                El Nombre es requerido.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea formControlName="descripcion" class="form-control" id="descripcion"></textarea>
+            <div *ngIf="addProjectForm.get('descripcion')?.invalid && (addProjectForm.get('descripcion')?.dirty || addProjectForm.get('descripcion')?.touched)" class="text-danger">
+              <div *ngIf="addProjectForm.get('descripcion')?.errors?.['required']">
+                La Descripción es requerida.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fechaInic">Fecha de Inicio</label>
+            <input type="text" formControlName="fechaInic" class="form-control" id="fechaInic">
+            <div *ngIf="addProjectForm.get('fechaInic')?.invalid && (addProjectForm.get('fechaInic')?.dirty || addProjectForm.get('fechaInic')?.touched)" class="text-danger">
+              <div *ngIf="addProjectForm.get('fechaInic')?.errors?.['required']">
+                La Fecha de Inicio es requerida.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fechaFin">Fecha de Finalización</label>
+            <input type="text" formControlName="fechaFin" class="form-control" id="fechaFin">
+            <div *ngIf="addProjectForm.get('fechaFin')?.invalid && (addProjectForm.get('fechaFin')?.dirty || addProjectForm.get('fechaFin')?.touched)" class="text-danger">
+              <div *ngIf="addProjectForm.get('fechaFin')?.errors?.['required']">
+                La Fecha de Finalización es requerida.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="img">URL de la Imagen</label>
+            <input type="text" formControlName="img" class="form-control" id="img">
+            <div *ngIf="addProjectForm.get('img')?.invalid && (addProjectForm.get('img')?.dirty || addProjectForm.get('img')?.touched)" class="text-danger">
+              <div *ngIf="addProjectForm.get('img')?.errors?.['required']">
+                La URL de la Imagen es requerida.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="evidencia">Evidencia</label>
+            <textarea formControlName="evidencia" class="form-control" id="evidencia"></textarea>
+            <div *ngIf="addProjectForm.get('evidencia')?.invalid && (addProjectForm.get('evidencia')?.dirty || addProjectForm.get('evidencia')?.touched)" class="text-danger">
+              <div *ngIf="addProjectForm.get('evidencia')?.errors?.['required']">
+                La Evidencia es requerida.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" (click)="addProject()" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- Modal edit -->
+<div class="modal fade" id="editModalEditarProject" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Editar Proyecto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </header>
+      <div class="modal-body">
+        <form [formGroup]="editProjectForm">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre">
+            <div *ngIf="editProjectForm.get('nombre')?.invalid && (editProjectForm.get('nombre')?.dirty || editProjectForm.get('nombre')?.touched)" class="text-danger">
+              <div *ngIf="editProjectForm.get('nombre')?.errors?.['required']">
+                El Nombre es requerido.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea formControlName="descripcion" class="form-control" id="descripcion"></textarea>
+            <div *ngIf="editProjectForm.get('descripcion')?.invalid && (editProjectForm.get('descripcion')?.dirty || editProjectForm.get('descripcion')?.touched)" class="text-danger">
+              <div *ngIf="editProjectForm.get('descripcion')?.errors?.['required']">
+                La Descripción es requerida.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fechaInic">Fecha de Inicio</label>
+            <input type="text" formControlName="fechaInic" class="form-control" id="fechaInic">
+            <div *ngIf="editProjectForm.get('fechaInic')?.invalid && (editProjectForm.get('fechaInic')?.dirty || editProjectForm.get('fechaInic')?.touched)" class="text-danger">
+              <div *ngIf="editProjectForm.get('fechaInic')?.errors?.['required']">
+                La Fecha de Inicio es requerida.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fechaFin">Fecha de Finalización</label>
+            <input type="text" formControlName="fechaFin" class="form-control" id="fechaFin">
+            <div *ngIf="editProjectForm.get('fechaFin')?.invalid && (editProjectForm.get('fechaFin')?.dirty || editProjectForm.get('fechaFin')?.touched)" class="text-danger">
+              <div *ngIf="editProjectForm.get('fechaFin')?.errors?.['required']">
+                La Fecha de Finalización es requerida.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="img">URL de la Imagen</label>
+            <input type="text" formControlName="img" class="form-control" id="img">
+            <div *ngIf="editProjectForm.get('img')?.invalid && (editProjectForm.get('img')?.dirty || editProjectForm.get('img')?.touched)" class="text-danger">
+              <div *ngIf="editProjectForm.get('img')?.errors?.['required']">
+                La URL de la Imagen es requerida.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="evidencia">Evidencia</label>
+            <textarea formControlName="evidencia" class="form-control" id="evidencia"></textarea>
+            <div *ngIf="editProjectForm.get('evidencia')?.invalid && (editProjectForm.get('evidencia')?.dirty || editProjectForm.get('evidencia')?.touched)" class="text-danger">
+              <div *ngIf="editProjectForm.get('evidencia')?.errors?.['required']">
+                La Evidencia es requerida.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" (click)="saveProjectDetailsData()" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+      </footer>
+    </div>
+  </div>
+</div>

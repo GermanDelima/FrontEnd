@@ -1,0 +1,94 @@
+:host {
+  display: contents;
+  background-color: aqua;
+ 
+}
+
+.tamañoTextPersDetails {
+
+  font-size: 1.5rem;
+ color: #F9FAFB;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.556);
+  margin: 0rem;
+  padding: 0rem;
+}
+
+
+.modal-body{
+  z-index: 3000;}
+
+
+  .tamañoTextTitulo{
+    font-size: 6rem;
+    margin: 0rem;
+    padding: 0rem;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    background: linear-gradient(to right, rgb(52, 171, 99), rgb(72, 218, 127));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .tamañoTextSub{
+    font-size: 4rem;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0rem;
+    padding: 0rem;
+    background: linear-gradient(to right, rgb(52, 171, 99), rgb(72, 218, 127));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+
+  .bbb{
+    
+    margin: auto;
+    
+  }
+  
+  @media(max-width:756px){
+    
+  .tamañoTextTitulo{
+    font-size: 3rem;
+    
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    background: linear-gradient(to top, rgb(52, 171, 99), rgb(72, 218, 127));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .tamañoTextSub{
+    font-size: 2rem;
+    
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    background: linear-gradient(to top, rgb(52, 171, 99), rgb(72, 218, 127));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  }
+
+ 

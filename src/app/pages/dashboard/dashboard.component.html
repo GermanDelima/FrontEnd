@@ -1,0 +1,95 @@
+<p *ngIf="!userLoginOn" class="alert alert-danger">Regístrate para gestionar tu portafolio</p>
+<p *ngIf="userLoginOn" class="alert alert-success">¡Bienvenido {{ user?.firstname }} {{ user?.lastname }}!</p>
+
+    <app-nav></app-nav>
+
+<section>
+    <div class="card col-lg-12 parent-container">
+        <!-- Sección con la descripción y el nombre -->
+        <div class="card-footer mt-0 overlay">
+            <app-sobremi></app-sobremi>
+            <app-personal-details></app-personal-details>
+        </div>
+        
+        <!-- Header con la imagen del banner -->
+        <div class="card-header mt-0 p-0">
+            <app-header></app-header>
+        </div>
+    </div>
+</section>
+
+@defer (on timer(2000)){
+
+<section>
+    <span id="habilidad-section">...</span>
+
+    <div class="card mx-auto mb-0 col-lg-11 mt-0 fondoAzulCordeados">
+        <div class="card-header text-center">
+            <span class="tamañoText">Habilidades</span>
+        </div>
+
+        <div class="card mx-auto mb-0 mt-0 col-lg-12 fondoNegroCard">
+            <div class="card-body">
+                <app-ability></app-ability>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <span id="proyecto-section">...</span>
+
+    <div class="card mx-auto mb-0 mt-0 col-lg-12 fondoAzulCordeados">
+        <div class="card-header text-center">
+            <span class="tamañoText">Proyectos</span>
+        </div>
+
+        <div class="card mx-auto mb-0 mt-0 col-lg-12 fondoNegroCard">
+            <div class="card-footer">
+                <app-project></app-project>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <span id="education-section">...</span>
+
+    <div class="card mx-auto mb-0 mt-0 col-lg-12 fondoAzulCordeados">
+        <div class="card-header text-center">
+            <span class="tamañoText">Educacion</span>
+        </div>
+
+        <div class="card mx-auto mb-0 mt-0 col-lg-12 fondoNegroCard">
+            <div class="card-footer">
+                <app-education></app-education>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <span id="diploma-section">...</span>
+
+    <div class="card mx-auto mb-0 mt-5 col-lg-12 fondoAzulCordeados">
+        <br>
+
+        <div class="card-header text-center">
+            <span class="tamañoText">Diplomas</span>
+        </div>
+
+        <div class="card mx-auto mb-0 mt-0 col-lg-12 fondoNegroCard">
+            <div class="card-footer">
+                <app-diploma></app-diploma>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <br><br>
+
+<section>
+    <app-footer></app-footer>
+</section>
+
+}

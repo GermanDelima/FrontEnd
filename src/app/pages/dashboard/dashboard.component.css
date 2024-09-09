@@ -1,0 +1,101 @@
+/*El NavBar permanece fijo en la misma posicion*/
+app-nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+/*Iluminado banner oscuro*/
+.parent-container {
+  position: relative;
+}
+.overlay {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  background-color: rgba(31, 41, 55, 0.4);
+}
+
+.tamañoText {
+  font-size: 2.5rem;
+  
+  padding: 0%;
+  margin: 0%;
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+
+
+  background: linear-gradient(to right, rgb(52, 171, 99), rgb(72, 218, 127));
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/*Borde de las tarjetas*/
+.card-body {
+  padding: 1rem;
+  margin: 0%;
+  background-color: #1F2937;
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+/*Fondo Amarillo encabezado card*/
+.fondoAzulCordeados {
+  max-width: 100rem;
+  background-color: #111827;
+  padding: 0%;
+  margin: 0%;
+}
+
+/*Fondo azul de las card*/
+.fondoNegroCard {
+  padding: 0%;
+  margin: 0%;
+  background-color: #1F2937;
+}
+
+.card {
+  border: #111827 solid 1px;
+  background-color: #111827;
+
+}
+.card-header {
+  border: #111827 solid 1px;
+  border-bottom: #111827 solid 1px;
+  border-top: #111827 solid 1px;
+}
+
+@media (max-width: 576px) {
+  
+  .overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 0%;
+    left: 0;
+    max-width: 100%;
+    height: 900px; /* Cambia la altura a auto para que se ajuste al contenido */
+    z-index: 998;
+    padding: 0.5rem;
+    margin: 0%;
+    
+  
+  }
+  .card-body {
+    padding: 0rem;
+    margin: 0%;
+    display: flex;
+    justify-content: space-evenly;
+
+  }
+}

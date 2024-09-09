@@ -1,0 +1,35 @@
+
+form{
+    margin: 2rem;
+}
+.ng-valid:not(form).ng-touched {
+    border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form).ng-touched {
+    border-left: 5px solid #a94442;
+}
+.cccc{
+    background-color: #111827;
+    text-align: center;
+    position: relative;
+    padding-bottom: 3em;
+    min-height: 70vh;
+    padding-top: 5%;
+    padding: 1rem;
+}
+
+/*Navbar*/
+.bg-bluess{
+    background-color: #111827;
+    padding: 1.5rem;
+}
+
+
+ 
+
+
+  
+
+
+

@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-md bg-bluess  d-flex">
+ 
+  <div class="container-fluid d-flex ">
+    <div class="d-flex collapse navbar-collapse justify-content-center " id="navbarNav">
+    </div>
+  </div>
+</nav>
+
+<div class=" container-fluid d-flex justify-content-center align-items-center cccc">
+
+    <div class="card p-4" style="width: 500px;">
+      
+      <form class="" [formGroup]="loginForm" >
+        <p class="text-danger">{{loginError}}</p>
+        <div class="mb-3">
+          
+          <input formControlName="username" placeholder="Correo electrónico o número de teléfono" type="email" class="form-control" aria-describedby="emailHelp">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+            <div *ngIf="email.errors?.['required']">
+              El Email es requerido.
+            </div>
+            <div *ngIf="email.errors?.['email']">
+              El Email debe tener un formato válido.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+
+          <input formControlName="password" placeholder="Contraseña" type="password" class="form-control" >
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+            <div *ngIf="password.errors?.['required']">
+              La contraseña es requerida.
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <div class="d-flex justify-content-center gap-2"> 
+          <div class="text-center">
+            <button class="btn btn-primary " routerLink="/inicio">
+              <i class="fas fa-home"></i> <!-- Icono de Font Awesome para "Inicio" -->
+            </button>
+          </div>  
+          <div class="text-start" >
+            <button type="submit" (click)="login()" class="btn btn-primary">Iniciar sesión</button>
+          </div>
+        </div>
+      </form>
+    </div> 
+</div>
+
+
