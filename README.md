@@ -1,7 +1,7 @@
 # 💻 Portfolio Web - #YoProgramo
 ![GitHub Release Date](https://img.shields.io/github/release-date/GermanDelima/FrontEnd) ![GitHub followers](https://img.shields.io/github/followers/germandelima?style=social)
 
-En este repositorio se encuentra todo lo relacionado al **Frontend** del proyecto, en caso de querer ver la parte del **Backend** **[ir aquí](https://github.com/mariquenaallosa/portfolio-backend "aquí").**
+En este repositorio se encuentra todo lo relacionado al **Frontend** del proyecto, en caso de querer ver la parte del **Backend** **[ir aquí](https://github.com/GermanDelima/BackEnd "aquí").**
 ## 📝 Descripción
 - ***Portfolio Web Fullstack*** realizado como Proyecto Final del curso **Argentina Programa - #YoProgramo**.
 
