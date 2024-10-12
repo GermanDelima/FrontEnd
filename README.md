@@ -13,7 +13,7 @@ Funcionalidades:
 <div align="center">
 
 ![1](https://raw.githubusercontent.com/GermanDelima/FrontEnd/refs/heads/master/Dashboard%20desktop.png)
-![2](login_con_validaciones_reactivas.png)
+![2](https://raw.githubusercontent.com/GermanDelima/FrontEnd/refs/heads/master/login_con_validaciones_reactivas.png)
 
 </div>
 <br>
