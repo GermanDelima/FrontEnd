@@ -12,7 +12,7 @@ Funcionalidades:
 1. Ingresar con usuario y contraseña a través del apartado <b>"Ingreso"</b> en la barra de navegacion. dicho apartado posee un formulario reactivo con Validadores sincronizados (como requerir campos y verificar formatos) directamente en el código TypeScript. </b>, si todo sale bien nos permitirá editar los datos del perfil.
 <div align="center">
 
-![1](home.png.png)
+![1](https://raw.githubusercontent.com/GermanDelima/FrontEnd/refs/heads/master/Dashboard%20desktop.png)
 ![2](login_con_validaciones_reactivas.png)
 
 </div>
